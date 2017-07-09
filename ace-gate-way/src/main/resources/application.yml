@@ -1,0 +1,97 @@
+logging:
+    level:
+        tk.mybatis: DEBUG
+        com.github.wxiaoqi.gate.back: DEBUG
+  #  config: classpath:logback.xml
+    # path: /ag/admin
+spring:
+    application:
+        name: back
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+        default-property-inclusion: non_null
+    thymeleaf:
+        mode: LEGACYHTML5
+        cache: false
+    redis:
+        database: 1
+        host: 127.0.0.1
+        pool:
+            max-active: 20
+    datasource:
+        name: test
+        url: jdbc:mysql://localhost:3306/ag_gate?useUnicode=true&characterEncoding=UTF8
+        username: root
+        password: 123456
+        # 使用druid数据源
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+mybatis:
+    basepackage: com.github.wxiaoqi.gate.back.mapper
+    xmlLocation: classpath:mapper/**/*.xml
+
+server:
+    port: 8762
+
+eureka:
+    instance:
+        statusPageUrlPath: ${management.context-path}/info
+        healthCheckUrlPath: ${management.context-path}/health
+        preferIpAddress: true
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
+swagger:
+    basepackage: com.github.wxiaoqi.gate.back.api
+    service:
+        name: 网关中心Api
+        description: 网关中心鉴权Api
+        developer: 老A
+
+gate:
+    client:
+        clientId: admin-api-gate
+        secret: $2a$12$AeVHvq5Q6kv54uqmpGXo2OnS8GaEB.5CffhxU0.THi3aHWlvOAhoO
+        authHeader: access-token
+        authHost: http://localhost:8762/api/authen
+        tokenHead: ApiGateToken
+    ignore:
+        startWith: /admin,/index,/about
+        contain: .
+    api:
+        header: access-token
+        secret: mySecret
+        expiration: 7200
+        tokenHead: ApiGateToken
+
+
+
+ribbon:
+    eureka:
+        enabled: true
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+zuul:
+  prefix: /api #为zuul设置一个公共的前缀
