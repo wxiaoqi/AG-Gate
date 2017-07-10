@@ -20,6 +20,8 @@ AG-Gate 是一个基于spring cloud的用户资源授权、api管理授权的网
 - 运行ace-gate-way下db脚本
 - 启动一个redis
 - 修改ace-gate-way下的redis配置和数据库配置
+- jdk1.8
+- IDE插件一个，lombok插件，具体百度即可
 
 ## 启动指南
 - 依次启动ace-gate-eureka、ace-gate-way
@@ -84,10 +86,11 @@ public String getSystemsByUsername(@PathVariable("username") String username){
 ```
 <dependency>
     <groupId>com.github.wxiaoqi</groupId>
-    <artifactId>ace-api-agent</artifactId>
+    <artifactId>ace-gate-agent</artifactId>
     <version>1.0-SNAPSHOT</version>
 </dependency>
 ```
+
 ### 配置引入
 ```
 gate:
@@ -98,9 +101,10 @@ gate:
     # 与服务端authHeader保持一致
     authHeader: access-token
     authHost: http://localhost:8765/api/authen
-    # 与ace-api-gate jwt.tokenHead保持一致
+    # 与ace-gate-way gate.api.tokenHead保持一致
     tokenHead: ApiGateToken
 ```
+
 ### 配置启用
 ```
 @Configuration
