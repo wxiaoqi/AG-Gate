@@ -1,7 +1,7 @@
-package com.github.wxiaoqi.gate.agent.agent.rest;
+package com.github.wxiaoqi.gate.agent.rest;
 
 import com.alibaba.fastjson.JSON;
-import com.github.wxiaoqi.gate.agent.agent.exception.AuthenticationServerErrorException;
+import com.github.wxiaoqi.gate.agent.exception.AuthenticationServerErrorException;
 import jodd.http.HttpRequest;
 import jodd.http.HttpResponse;
 import org.springframework.web.method.HandlerMethod;

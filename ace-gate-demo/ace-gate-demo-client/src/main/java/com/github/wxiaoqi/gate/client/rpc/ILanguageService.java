@@ -1,6 +1,5 @@
 package com.github.wxiaoqi.gate.client.rpc;
 
-import com.github.wxiaoqi.gate.agent.agent.rest.ApiGateSecurity;
 import com.github.wxiaoqi.gate.client.hystrix.LanguageServiceHystrix;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;

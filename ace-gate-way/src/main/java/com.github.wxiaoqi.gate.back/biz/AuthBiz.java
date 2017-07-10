@@ -1,7 +1,7 @@
 package com.github.wxiaoqi.gate.back.biz;
 
-import com.github.wxiaoqi.gate.agent.agent.vo.authority.PermissionInfo;
-import com.github.wxiaoqi.gate.agent.agent.vo.gate.ClientInfo;
+import com.github.wxiaoqi.gate.agent.vo.authority.PermissionInfo;
+import com.github.wxiaoqi.gate.agent.vo.gate.ClientInfo;
 import com.github.wxiaoqi.gate.back.service.GateService;
 import com.github.wxiaoqi.gate.back.secruity.ApiTokenUtil;
 import com.google.common.base.Predicate;

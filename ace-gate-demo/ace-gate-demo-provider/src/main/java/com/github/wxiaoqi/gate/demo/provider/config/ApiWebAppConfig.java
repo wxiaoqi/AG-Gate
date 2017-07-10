@@ -1,6 +1,6 @@
 package com.github.wxiaoqi.gate.demo.provider.config;
 
-import com.github.wxiaoqi.gate.agent.agent.rest.ApiInterceptor;
+import com.github.wxiaoqi.gate.agent.rest.ApiInterceptor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

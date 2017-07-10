@@ -1,7 +1,7 @@
 package com.github.wxiaoqi.gate.back.service;
 
-import com.github.wxiaoqi.gate.agent.agent.vo.authority.PermissionInfo;
-import com.github.wxiaoqi.gate.agent.agent.vo.gate.ClientInfo;
+import com.github.wxiaoqi.gate.agent.vo.authority.PermissionInfo;
+import com.github.wxiaoqi.gate.agent.vo.gate.ClientInfo;
 import com.github.wxiaoqi.gate.back.biz.ElementBiz;
 import com.github.wxiaoqi.gate.back.biz.GateClientBiz;
 import com.github.wxiaoqi.gate.back.constant.CommonConstant;

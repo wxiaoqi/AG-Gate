@@ -1,6 +1,6 @@
 package com.github.wxiaoqi.gate.client.config;
 
-import com.github.wxiaoqi.gate.agent.agent.feign.FeignInterceptor;
+import com.github.wxiaoqi.gate.agent.feign.FeignInterceptor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

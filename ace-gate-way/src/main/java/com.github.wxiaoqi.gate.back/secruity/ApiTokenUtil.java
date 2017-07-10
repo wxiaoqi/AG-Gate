@@ -1,6 +1,6 @@
 package com.github.wxiaoqi.gate.back.secruity;
 
-import com.github.wxiaoqi.gate.agent.agent.vo.gate.ClientInfo;
+import com.github.wxiaoqi.gate.agent.vo.gate.ClientInfo;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

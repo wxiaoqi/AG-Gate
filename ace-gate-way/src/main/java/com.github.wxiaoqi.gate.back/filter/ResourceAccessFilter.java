@@ -1,8 +1,8 @@
 package com.github.wxiaoqi.gate.back.filter;
 
-import com.github.wxiaoqi.gate.agent.agent.vo.authority.PermissionInfo;
-import com.github.wxiaoqi.gate.agent.agent.vo.log.LogInfo;
-import com.github.wxiaoqi.gate.agent.agent.vo.user.UserInfo;
+import com.github.wxiaoqi.gate.agent.vo.authority.PermissionInfo;
+import com.github.wxiaoqi.gate.agent.vo.log.LogInfo;
+import com.github.wxiaoqi.gate.agent.vo.user.UserInfo;
 import com.github.wxiaoqi.gate.back.service.LogService;
 import com.github.wxiaoqi.gate.back.service.UserService;
 import com.github.wxiaoqi.gate.back.secruity.SecurityUser;

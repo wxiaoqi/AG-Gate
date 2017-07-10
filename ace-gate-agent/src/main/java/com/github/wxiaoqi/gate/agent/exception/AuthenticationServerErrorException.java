@@ -1,4 +1,4 @@
-package com.github.wxiaoqi.gate.agent.agent.exception;
+package com.github.wxiaoqi.gate.agent.exception;
 
 /**
  * Created by ace on 2017/7/5.

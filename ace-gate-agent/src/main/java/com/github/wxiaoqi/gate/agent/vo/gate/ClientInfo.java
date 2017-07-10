@@ -1,4 +1,4 @@
-package com.github.wxiaoqi.gate.agent.agent.vo.gate;
+package com.github.wxiaoqi.gate.agent.vo.gate;
 
 import java.io.Serializable;
 import java.util.Date;

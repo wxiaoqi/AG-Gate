@@ -1,4 +1,4 @@
-package com.github.wxiaoqi.gate.agent.agent.rest;
+package com.github.wxiaoqi.gate.agent.rest;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

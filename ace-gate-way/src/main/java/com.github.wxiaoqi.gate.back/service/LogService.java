@@ -1,6 +1,6 @@
 package com.github.wxiaoqi.gate.back.service;
 
-import com.github.wxiaoqi.gate.agent.agent.vo.log.LogInfo;
+import com.github.wxiaoqi.gate.agent.vo.log.LogInfo;
 import com.github.wxiaoqi.gate.back.biz.GateLogBiz;
 import com.github.wxiaoqi.gate.back.entity.GateLog;
 import org.springframework.beans.BeanUtils;

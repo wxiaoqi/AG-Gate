@@ -1,6 +1,6 @@
 package com.github.wxiaoqi.gate.back.util;
 
-import com.github.wxiaoqi.gate.agent.agent.vo.log.LogInfo;
+import com.github.wxiaoqi.gate.agent.vo.log.LogInfo;
 import com.github.wxiaoqi.gate.back.service.LogService;
 import lombok.extern.slf4j.Slf4j;
 

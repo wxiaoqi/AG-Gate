@@ -1,4 +1,4 @@
-package com.github.wxiaoqi.gate.agent.agent.vo.user;
+package com.github.wxiaoqi.gate.agent.vo.user;
 
 import java.io.Serializable;
 

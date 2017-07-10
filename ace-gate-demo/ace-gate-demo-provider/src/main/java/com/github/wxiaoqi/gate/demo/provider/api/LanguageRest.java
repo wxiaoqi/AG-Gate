@@ -1,6 +1,6 @@
 package com.github.wxiaoqi.gate.demo.provider.api;
 
-import com.github.wxiaoqi.gate.agent.agent.rest.ApiGateSecurity;
+import com.github.wxiaoqi.gate.agent.rest.ApiGateSecurity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

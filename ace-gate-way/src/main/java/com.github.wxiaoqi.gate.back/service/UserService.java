@@ -1,9 +1,9 @@
 package com.github.wxiaoqi.gate.back.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.github.wxiaoqi.gate.agent.agent.rest.ApiGateSecurity;
-import com.github.wxiaoqi.gate.agent.agent.vo.authority.PermissionInfo;
-import com.github.wxiaoqi.gate.agent.agent.vo.user.UserInfo;
+import com.github.wxiaoqi.gate.agent.rest.ApiGateSecurity;
+import com.github.wxiaoqi.gate.agent.vo.authority.PermissionInfo;
+import com.github.wxiaoqi.gate.agent.vo.user.UserInfo;
 import com.github.wxiaoqi.gate.back.biz.ElementBiz;
 import com.github.wxiaoqi.gate.back.biz.MenuBiz;
 import com.github.wxiaoqi.gate.back.biz.UserBiz;

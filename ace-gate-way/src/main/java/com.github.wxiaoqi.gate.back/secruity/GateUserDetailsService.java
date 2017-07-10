@@ -1,6 +1,6 @@
 package com.github.wxiaoqi.gate.back.secruity;
 
-import com.github.wxiaoqi.gate.agent.agent.vo.user.UserInfo;
+import com.github.wxiaoqi.gate.agent.vo.user.UserInfo;
 import com.github.wxiaoqi.gate.back.service.UserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
