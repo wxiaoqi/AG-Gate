@@ -4,7 +4,7 @@ AG-Gate 是一个基于spring cloud的用户资源授权、api管理授权的网
 ![img](http://ofsc32t59.bkt.clouddn.com/17-07-09/1499587875093.jpg)
 
 # 网关架构
-![img](http://ofsc32t59.bkt.clouddn.com/17-07-12/1499824219295.jpg)
+![img](http://ofsc32t59.bkt.clouddn.com/17-07-14/1499988679526.jpg)
 
 # 功能列表
 - 用户管理
