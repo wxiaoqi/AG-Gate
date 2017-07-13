@@ -54,6 +54,8 @@ public class AuthBiz{
     }
 
     public Boolean validate(String oldToken,String resource) {
+        if(!oldToken.startsWith(tokenHead))
+            return false;
         final String token = oldToken.substring(tokenHead.length());
         String clientId = jwtTokenUtil.getClientIdFromToken(token);
         ClientInfo info = gateService.getGateClientInfo(clientId);

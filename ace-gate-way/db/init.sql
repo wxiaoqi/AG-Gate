@@ -1,5 +1,7 @@
 
-CREATE DATABASE ag_gate DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE ag_gate_way DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+Use ag_gate_way;
+
 /*
  Navicat Premium Data Transfer
 

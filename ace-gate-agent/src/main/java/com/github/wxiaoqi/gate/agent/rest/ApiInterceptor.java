@@ -9,6 +9,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * api权限拦截器
@@ -21,14 +22,13 @@ public class ApiInterceptor extends HandlerInterceptorAdapter {
     /**
      * @param tokenHead 认证信息，默认access-token
      */
-    public ApiInterceptor(String authHost,String tokenHead) {
+    public ApiInterceptor(String authHost, String tokenHead) {
         this.authHost = authHost;
         this.tokenHead = tokenHead;
     }
 
     /**
      * 默认access-token
-     *
      */
     public ApiInterceptor(String authHost) {
         this.authHost = authHost;
@@ -38,22 +38,30 @@ public class ApiInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest httpRequest, HttpServletResponse httpResponse, Object handler) throws Exception {
         HandlerMethod handlerMethod = (HandlerMethod) handler;
-        ApiGateSecurity methodAnnotation = methodAnnotation =  handlerMethod.getBeanType().getAnnotation(ApiGateSecurity.class);
-        if(methodAnnotation==null)
+        ApiGateSecurity methodAnnotation = methodAnnotation = handlerMethod.getBeanType().getAnnotation(ApiGateSecurity.class);
+        if (methodAnnotation == null)
             methodAnnotation = handlerMethod.getMethodAnnotation(ApiGateSecurity.class);
         String token = httpRequest.getHeader(tokenHead);
         if (methodAnnotation != null) {
-            HttpResponse response = HttpRequest.get(authHost + "/verify").query("token", token).query("resource", httpRequest.getRequestURI()+":"+httpRequest.getMethod())
-                    .send();
-            if (response.statusCode() == 200) {
+            int statuCode = getStatusCode(token,httpRequest.getRequestURI() + ":" + httpRequest.getMethod()).get();
+            if (statuCode == 200) {
                 return super.preHandle(httpRequest, httpResponse, handler);
-            } else if (response.statusCode() == 401) {
+            } else if (statuCode == 401) {
                 httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
                 return false;
             } else {
-                throw new AuthenticationServerErrorException(JSON.toJSONString(response));
+                throw new AuthenticationServerErrorException("鉴权其他异常！");
             }
         }
         return super.preHandle(httpRequest, httpResponse, handler);
+    }
+
+    private CompletableFuture<Integer> getStatusCode(String token, String resource){
+        return CompletableFuture.supplyAsync(() -> {
+            HttpResponse response = HttpRequest.get(authHost + "/verify").query("token", token).query("resource", resource)
+                    .send();
+            int code = response.statusCode();
+            return code;
+        });
     }
 }

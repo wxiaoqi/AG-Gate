@@ -64,15 +64,9 @@ public class FeignInterceptor implements RequestInterceptor {
         String getAccessToken(String appId, String appSecret) throws AuthenticationVerifyFailException, AuthenticationServerErrorException;
     }
 
-    /**
-     * 使用自动续命的方式获取Token
-     * 线程安全
-     */
+
     private static final class AutoKeepAliveStrategy implements GetTokenStrategy {
-        /**
-         * 续命所需的App信息
-         * 线程安全
-         */
+
         private static final class ClientInfo {
             private final String clientId;
             private final String secret;
@@ -83,16 +77,19 @@ public class FeignInterceptor implements RequestInterceptor {
             }
         }
 
-        private static ClientInfo appInfo;
+        private static ClientInfo clientInfo;
         private static final AtomicReference<ScheduledThreadPoolExecutor> executor = new AtomicReference<ScheduledThreadPoolExecutor>();
         private static final AtomicReference<String> accessToken = new AtomicReference<String>();
 
         @Override
-        public String getAccessToken(String appId, String appSecret) throws AuthenticationVerifyFailException, AuthenticationServerErrorException {
-            appInfo = new ClientInfo(appId, appSecret);
-            accessToken.compareAndSet(null, getToken(appId, appSecret));
-            executor.compareAndSet(null, scheduledExecutor());
-            return accessToken.get();
+        public String getAccessToken(String clientId, String secret) throws AuthenticationVerifyFailException, AuthenticationServerErrorException {
+            clientInfo = new ClientInfo(clientId, secret);
+            String token = accessToken.get();
+            if(token == null){
+                token = getToken(clientId, secret);
+                executor.compareAndSet(null, scheduledExecutor());
+            }
+            return token;
         }
 
         private ScheduledThreadPoolExecutor scheduledExecutor() {
@@ -101,7 +98,7 @@ public class FeignInterceptor implements RequestInterceptor {
                 @Override
                 public void run() {
                     try {
-                        accessToken.set(getToken(appInfo.clientId, appInfo.secret));
+                        accessToken.set(getToken(clientInfo.clientId, clientInfo.secret));
                     } catch (AuthenticationVerifyFailException e) {
                         e.printStackTrace();
                     } catch (AuthenticationServerErrorException e) {

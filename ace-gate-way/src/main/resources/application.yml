@@ -1,12 +1,12 @@
 logging:
     level:
-        tk.mybatis: DEBUG
-        com.github.wxiaoqi.gate.back: DEBUG
+#        tk.mybatis: DEBUG
+        com.github.wxiaoqi.gate.back: INFO
   #  config: classpath:logback.xml
     # path: /ag/admin
 spring:
     application:
-        name: back
+        name: gate-way
     jackson:
         date-format: yyyy-MM-dd HH:mm:ss
         time-zone: GMT+8
@@ -21,7 +21,7 @@ spring:
             max-active: 20
     datasource:
         name: test
-        url: jdbc:mysql://localhost:3306/ag_gate?useUnicode=true&characterEncoding=UTF8
+        url: jdbc:mysql://localhost:3306/ag_gate_way?useUnicode=true&characterEncoding=UTF8
         username: root
         password: 123456
         # 使用druid数据源
@@ -64,8 +64,6 @@ swagger:
 
 gate:
     client:
-        clientId: admin-api-gate
-        secret: $2a$12$AeVHvq5Q6kv54uqmpGXo2OnS8GaEB.5CffhxU0.THi3aHWlvOAhoO
         authHeader: access-token
         authHost: http://localhost:8762/api/authen
         tokenHead: ApiGateToken
@@ -73,25 +71,43 @@ gate:
         startWith: /admin,/index,/about
         contain: .
     api:
-        header: access-token
-        secret: mySecret
-        expiration: 7200
-        tokenHead: ApiGateToken
-
-
-
-ribbon:
-    eureka:
-        enabled: true
-
+        header: access-token  #http 请求头key
+        secret: mySecret   #jwt 加密密钥
+        expiration: 7200  # 过期秒数
+        tokenHead: ApiGateToken # 认证token前缀
 
 hystrix:
+  threadpool:
+    default:
+      coreSize: 1000 ##并发执行的最大线程数，默认10
+      maxQueueSize: 1000 ##BlockingQueue的最大队列数
+      queueSizeRejectionThreshold: 500 ##即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝
   command:
     default:
       execution:
         isolation:
           thread:
             timeoutInMilliseconds: 5000
-
+    gate-demo-provider:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
 zuul:
   prefix: /api #为zuul设置一个公共的前缀
+#  host:
+#    maxTotalConnections: 1000
+#    socket-timeout-millis: 100000
+#    connect-timeout-millis: 100000
+  semaphore:
+    max-semaphores: 1000
+
+
+ribbon:
+  eureka:
+    enabled: true
+
+#gate-demo-provider:
+#  ribbon:
+#    ConnectTimeout: 10000
+#    ReadTimeout: 10000
